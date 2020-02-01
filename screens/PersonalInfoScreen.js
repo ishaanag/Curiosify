@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import { AppLoading, Button, View, Image, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import * as Font from 'expo-font';
+import { getOrientationAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
 
 export default function PersonalInfoScreen(props) {
     const { navigate } = props.navigation;
@@ -11,19 +12,21 @@ export default function PersonalInfoScreen(props) {
                 <Text style={styles.title}>Personalize your profile</Text>
                 <Text style={styles.subTitle}>Let us get to know you a little better.</Text>
             </View>
-            <Text style={styles.label1}>Username</Text>
+            <View style={styles.fieldsSection}>
+            <Text style={styles.fieldTitle}>Username</Text>
             <TextInput
-                style={styles.textInput1}
-                onChangeText={text => onChangeText(text)}
+                style={styles.textInput}
+                placeholder='Type your unique username here'
             />
-            <Text style={styles.label2}>School Grade</Text>
+            <Text style={styles.fieldTitle}>School Grade</Text>
             <TextInput
-                style={styles.textInput2}
-                onChangeText={text => onChangeText(text)}
+                style={styles.textInput}
+                placeholder='Type your school grade here'
+                keyboardType={"number-pad"}
             />
-            <Text style={styles.label3}>Avatar</Text>
-            <View style={{flex: 1}}>
-                <View style={styles.avatarRow1}>
+            <Text style={styles.fieldTitle}>Select Your Avatar</Text>
+            <View style={styles.avatarSection}>
+                <View style={styles.avatarRow}>
                     <TouchableOpacity>
                         <Image
                             style={{width: 56.77, height: 56.77}}
@@ -49,7 +52,7 @@ export default function PersonalInfoScreen(props) {
                         />
                     </TouchableOpacity>
                 </View>
-                <View style={styles.avatarRow2}>
+                <View style={styles.avatarRow}>
                     <TouchableOpacity>
                         <Image
                             style={{width: 56.77, height: 56.77}}
@@ -76,6 +79,7 @@ export default function PersonalInfoScreen(props) {
                     </TouchableOpacity>
                 </View>
             </View>
+            </View>
             <TouchableOpacity style={styles.button} onPress={() => navigate('Preferences')}>
                 <Text style={styles.buttonText}>Continue</Text>
             </TouchableOpacity>
@@ -87,159 +91,70 @@ export default function PersonalInfoScreen(props) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
         backgroundColor: 'white',
     },
     header: {
-        /* Rectangle 29 */
-        position: 'absolute',
-        width: 375,
-        height: 127,
-        left: 0,
-        top: 0,
-
-        backgroundColor: '#FFFFFF',
+        paddingTop: 50,
+        paddingBottom: 20,
+        paddingHorizontal: 30,
+        width: '100%',
         shadowOffset:{ width: 0, height: 1, },
         shadowColor: 'rgba(0, 0, 0, 0.06)',
-        shadowOpacity: 1
+        shadowOpacity: 1,
+        backgroundColor: 'white',
+    },
+    fieldsSection: {
+    },
+    avatarSection: {
+        alignItems: 'center',
     },
     title: {
-        position: 'absolute',
-        width: 268,
-        height: 30,
-        left: 45,
-        top: 40,
-
-        /* Title */
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 22,
         lineHeight: 30,
-        /* identical to box height */
-
         color: '#43519D'
     },
     subTitle: {
-        /* Let us get to know you a little better. */
-        position: 'absolute',
-        width: 244,
-        height: 30,
-        left: 45,
-        top: 87,
-
-        /* Paragraph */
-
-        // fontFamily: 'Nunito',
         fontStyle: 'normal',
         fontWeight: 'normal',
         fontSize: 12,
         lineHeight: 16,
         display: 'flex',
         alignItems: 'center',
-
-        color: '#000000'
-
+        color: '#000000',
+        marginTop: 10,
     },
-    label1: {
-        /* Username */
-        position: 'absolute',
-        width: 114,
-        height: 30,
-        left: 45,
-        top: 159,
-
-        /* Subtitle */
-        //font-family: Nunito;
+    fieldTitle: {
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 16,
         lineHeight: 22,
-
-        color: '#43519D'
+        color: '#43519D',
+        marginTop: 10,
     },
-    textInput1: {
-        position: 'absolute',
-        width: 278,
-        height: 30,
-        left: 45,
-        top: 194,
-
+    textInput: {
         backgroundColor: 'rgba(207, 207, 207, 0.3)',
-        borderRadius: 5
+        borderRadius: 5,
+        height: 40,
+        padding: 10,
+        margin: 10,
+        width: 300,
     },
-    label2: {
-        /* Username */
-        position: 'absolute',
-        width: 114,
-        height: 30,
-        left: 45,
-        top: 260,
-
-        /* Subtitle */
-        //font-family: Nunito;
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        fontSize: 16,
-        lineHeight: 22,
-
-        color: '#43519D'
-    },
-    textInput2: {
-        position: 'absolute',
-        width: 278,
-        height: 30,
-        left: 45,
-        top: 295,
-
-        backgroundColor: 'rgba(207, 207, 207, 0.3)',
-        borderRadius: 5
-    },
-    label3: {
-        /* Username */
-        position: 'absolute',
-        width: 114,
-        height: 30,
-        left: 45,
-        top: 355,
-
-        /* Subtitle */
-        //font-family: Nunito;
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        fontSize: 16,
-        lineHeight: 22,
-
-        color: '#43519D'
-    },
-    avatarRow1: {
-        left: 0,
-        top: 400,
+    avatarRow: {
         width: '80%',
+        margin: 10,
+        marginBottom: 20,
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
-    avatarRow2: {
-        left: 0,
-        top: 420,
-        width: '80%',
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
     button: {
-        /* Rectangle 1 */
-        position: 'absolute',
         width: 105,
         height: 39,
-        left: 131,
-        top: 586,
-
-        /* Dark Blue */
         backgroundColor: '#6872D1',
         borderRadius: 3,
-
-        /* Text layout within button */
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
