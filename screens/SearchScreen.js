@@ -55,7 +55,7 @@ export default class FetchExample extends React.Component {
                     />
                 </View>
                 <View style={{height: 46}}>
-                    <ScrollView horizontal={true} centerContent={true} style={styles.scrollview}>
+                    <ScrollView horizontal={true} centerContent={true} showsHorizontalScrollIndicator= {false} style={styles.scrollview}>
                         <View style={styles.recentButton}>
                             <Text style={{color: '#6872D1'}}>Recent</Text>
                         </View>
@@ -112,7 +112,7 @@ export default class FetchExample extends React.Component {
     header: {
         /* Rectangle 29 */
         position: 'absolute',
-        width: 375,
+        width: '100%',
         height: 180,
         left: 0,
         top: 0,
