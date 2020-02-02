@@ -156,7 +156,7 @@ export default class App extends Component {
                 <Draggable source={require('.././assets/media/lvideos.png')} app={this}/>
                 <Draggable source={require('.././assets/media/articles.png')} app={this}/>
             </View>
-            <TouchableOpacity style={styles.button} onPress={() => navigate('Search')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigate('TopicsInterests')}>
                 <Text style={styles.buttonText}>Continue</Text>
             </TouchableOpacity>
         </View>
