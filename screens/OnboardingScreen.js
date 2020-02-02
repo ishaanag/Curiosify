@@ -9,8 +9,8 @@ export default function OnboardingScreen(props) {
         <View style={styles.container}>
             <Text style={styles.title}>Curiosify</Text>
             <Image
-                style={{width: 219, height: 219}}
-                source={require('.././assets/onboardingLogo.png')}
+                style={{width: 219*1.2, height: 219*1.2}}
+                source={require('.././assets/onboardinglogo.gif')}
             />
                 <TouchableOpacity style={styles.button} onPress={() => navigate('PersonalInfo')}>
                     <Text style={styles.buttonText}>Let's go</Text>
@@ -26,33 +26,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        backgroundColor: 'white',
+        backgroundColor: '#F8F8F8',
     },
     title: {
-        /* Curiosify */
-        position: 'absolute',
-        width: 239,
-        height: 71,
-        left: 68,
-        top: 129,
-
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 40,
-        lineHeight: 55,
         textAlign: 'center',
+        marginBottom: 40,
 
         /* Dark Blue */
         color: '#6872D1',
-        flex: 1
     },
     button: {
-        /* Rectangle 1 */
-        position: 'absolute',
         width: 157,
         height: 51,
-        left: 109,
-        top: 509,
+        marginTop: 40,
 
         /* Dark Blue */
         backgroundColor: '#6872D1',
@@ -65,5 +54,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
+        fontWeight: 'bold',
     }
 });

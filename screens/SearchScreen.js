@@ -260,5 +260,6 @@ export default class FetchExample extends React.Component {
     },
     buttonText: {
         color: 'white',
+        fontWeight: 'bold'
     }
 });
